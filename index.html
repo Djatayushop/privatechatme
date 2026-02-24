@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #080808;
+            --card: #131313;
+            --border: #1e1e1e;
+            --text: #f0f0f0;
+            --muted: #555;
+            --accent: #e8ff57;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glow {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, #e8ff5718 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 2.2rem;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .avatar {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e8ff57, #00d4aa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+        }
+
+        .heading {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .heading span {
+            color: var(--accent);
+        }
+
+        .sub {
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.4rem;
+            animation: fadeUp 0.5s 0.1s ease both;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider span {
+            color: var(--muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            border-radius: 3px 0 0 3px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .link:hover {
+            border-color: #e8ff5740;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px #e8ff5710;
+        }
+
+        .link:hover::before {
+            opacity: 1;
+        }
+
+        .link:active {
+            transform: translateY(0);
+        }
+
+        .link:nth-child(1) {
+            animation: fadeUp 0.5s 0.15s ease both;
+        }
+
+        .link:nth-child(2) {
+            animation: fadeUp 0.5s 0.22s ease both;
+        }
+
+        .link:nth-child(3) {
+            animation: fadeUp 0.5s 0.29s ease both;
+        }
+
+        .num {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: #1a1a1a;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .label {
+            flex: 1;
+        }
+
+        .arrow {
+            color: var(--muted);
+            font-size: 0.85rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .link:hover .arrow {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #2a2a2a;
+            font-size: 0.7rem;
+            animation: fadeUp 0.5s 0.4s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="glow"></div>
+
+        <div class="profile">
+            <div class="avatar">💬</div>
+            <div class="heading">CONTACT ME<br><span>PRIVATE CHAT</span></div>
+            <div class="sub">Let's set up a time to meet in a private chat.Enter my private chat 💌🥰😊👇</div>
+        </div>
+
+        <div class="divider"><span>Quick Access</span></div>
+
+        <div class="links">
+
+            <a class="link" href="https://roesl.juvgat.xyz/gVkXuNk0yUW5JaW9vSWVsdnQ4" target="_blank" rel="noopener">
+                <div class="num">01</div>
+                <span class="label">Private Chat — Link 1</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a class="link" href="https://aaeuoxt.juvgat.xyz/wVZkqMmFpUWk1dWtzSWVVeGFr" target="_blank" rel="noopener">
+                <div class="num">02</div>
+                <span class="label">Private Chat — Link 2</span>
+                <span class="arrow">→</span>
+            </a>
+
+            <a class="link" href="https://lezsiht.juvgat.xyz/rO1ztNWFXSllxcW5xNEJyck9z" target="_blank" rel="noopener">
+                <div class="num">03</div>
+                <span class="label">Private Chat — Link 3</span>
+                <span class="arrow">→</span>
+            </a>
+
+        </div>
+
+        <div class="footer">© 2025</div>
+    </div>
+
+</body>
+
+</html>
